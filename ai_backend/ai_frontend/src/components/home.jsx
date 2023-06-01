@@ -1,7 +1,9 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
-  const [imageUrl, setimageUrl] = useState("");
+  const [imageUrl, setimageUrl] = useState('');
+  const [showSpinner, setshowSpinner] = useState(false);
+
   useEffect(() => {
     function onSubmit(e) {
       e.preventDefault();
@@ -15,6 +17,7 @@ const Home = () => {
       }
       generateImageRequest(prompt, size);
     }
+
     async function generateImageRequest(prompt, size) {
       try {
         showSpinner();
@@ -41,102 +44,104 @@ const Home = () => {
         document.querySelector('.msg').textContent = error;
       }
     }
+
     function showSpinner() {
-      document.querySelector('.spinner').classList.add('show');
+      setshowSpinner(true);
     }
+
     function removeSpinner() {
-      document.querySelector('.spinner').classList.remove('show');
+      setshowSpinner(false);
     }
+
     const imageForm = document.querySelector('#image-form');
     if (imageForm) {
       imageForm.addEventListener('submit', onSubmit);
     }
+
     return () => {
       // Clean up event listener
       if (imageForm) {
         imageForm.removeEventListener('submit', onSubmit);
-      } };
+      }
+    };
   }, []);
-   function downloadImage(imageUrl) {
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = 'image.jpg';
-      link.click();
-    }
 
-    return (
-      <div>
-        <header>
-          <nav className="navbar navbar-expand-lg navbar-light ">
-            <div className="container">
-              <a className="navbar-brand" href="/">
-                OpenAI Image Generator
-              </a>
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <a
-                    className="nav-link"
-                    href="https://beta.openai.com/docs"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    OpenAI API Docs
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
-  
-        <main>
-          <section className="showcase">
-            <div className="container">
-              <form id="image-form">
-                <h1>Describe An Image</h1>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    id="prompt"
-                    className="form-control"
-                    placeholder="Enter Text"
-                  />
-                </div>
-                {/* Size */}
-                <div className="form-group">
-                  <select className="form-control" name="size" id="size">
-                    <option value="small">Small</option>
-                    <option value="medium" defaultValue>
-                      Medium
-                    </option>
-                    <option value="large">Large</option>
-                  </select>
-                </div>
-                <button type="submit" className="btn btn-primary">
-                  Generate
-                </button>
-              </form>
-            </div>
-          </section>
-  
-          <section className="image">
-            <div className="container">
-              <div className="image-container">
-                <h2 className="msg">Ai Image Generator</h2>
-                <img
-                  src=""
-                  alt=""
-                  id="image"
-                  className="img-fluid"
-                  onClick={(e) => downloadImage(imageUrl)}
+  // const download = e => {
+  //   console.log(e.target.href);
+  //   fetch(e.target.href, {
+  //     method: "GET",
+  //     headers: {}
+  //   })
+  //     .then(response => {
+  //       response.arrayBuffer().then(function(buffer) {
+  //         const url = window.URL.createObjectURL(new Blob([buffer]));
+  //         const link = document.createElement("a");
+  //         link.href = url;
+  //         link.setAttribute("download", "image/png"); //or any other extension
+  //         document.body.appendChild(link);
+  //         link.click();
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
+
+  return (
+    <div>
+      <main>
+        <section className="showcase">
+          <div className="container ">
+            <form id="image-form">
+              <h1 className="text-center">Describe An Image</h1>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="prompt"
+                  className="form-control"
+                  placeholder="Enter Text"
                 />
               </div>
+              <div className="form-group">
+                <select className="form-control" name="size" id="size">
+                  <option value="small">Small</option>
+                  <option value="medium" defaultValue>
+                    Medium
+                  </option>
+                  <option value="large">Large</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-primary btn-block">
+                Generate
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section className="image">
+          <div className="container">
+            <div className="image-container text-center">
+              <h2 className="msg">AI Image Generator</h2>
+              <img
+                src={imageUrl}
+                alt=""
+                id="image"
+                className="img-fluid"
+                download
+                // onClick={e=>download(e)}
+              />
             </div>
-          </section>
-        </main>
-  
-        <div className="spinner"></div>
-      </div>
-    );
-  };
-  
-  export default Home;
+          </div>
+        </section>
+      </main>
+
+      {showSpinner && (
+        <div className="spinner">
+          <div className="spinner-inner"></div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Home;

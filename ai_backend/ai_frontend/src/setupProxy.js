@@ -8,4 +8,12 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );
+  app.use(
+    '/generateAiImage',
+    createProxyMiddleware({
+      target: 'http://localhost:8000', // Replace with the appropriate backend server URL
+      changeOrigin: true,
+    })
+  );
+
 };
