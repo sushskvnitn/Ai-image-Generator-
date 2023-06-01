@@ -67,7 +67,7 @@ const Home = () => {
     return (
       <div>
         <header>
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-light ">
             <div className="container">
               <a className="navbar-brand" href="/">
                 OpenAI Image Generator
