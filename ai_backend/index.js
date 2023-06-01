@@ -8,6 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+dotenv.config();
 
 app.use(require('./routes/openaiRoutes'));
 
