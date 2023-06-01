@@ -64,54 +64,79 @@ const Home = () => {
       link.click();
     }
 
-  return (
-    <div>
-      <header>
-        <div className="navbar">
-          <div className="logo">
-            <h2>OpenAI Image Genrator</h2>
-          </div>
-          <div className="nav-links">
-            <ul>
-              <li>
-                <a rel="noreferrer" href="https://beta.openai.com/docs" target="_blank">
-                  OpenAI API Docs
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="showcase">
-          <form id="image-form">
-            <h1>Describe An Image</h1>
-            <div className="form-control">
-              <input type="text" id="prompt" placeholder="Enter Text" />
+    return (
+      <div>
+        <header>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container">
+              <a className="navbar-brand" href="/">
+                OpenAI Image Generator
+              </a>
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="https://beta.openai.com/docs"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    OpenAI API Docs
+                  </a>
+                </li>
+              </ul>
             </div>
-            {/* size */}
-            <div className="form-control">
-              <select name="size" id="size">
-                <option value="small">Small</option>
-                <option value="medium" selected>Medium</option>
-                <option value="large">Large</option>
-              </select>
+          </nav>
+        </header>
+  
+        <main>
+          <section className="showcase">
+            <div className="container">
+              <form id="image-form">
+                <h1>Describe An Image</h1>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    id="prompt"
+                    className="form-control"
+                    placeholder="Enter Text"
+                  />
+                </div>
+                {/* Size */}
+                <div className="form-group">
+                  <select className="form-control" name="size" id="size">
+                    <option value="small">Small</option>
+                    <option value="medium" defaultValue>
+                      Medium
+                    </option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                  Generate
+                </button>
+              </form>
             </div>
-            <button type="submit" className="btn">Generate</button>
-          </form>
-        </section>
-
-        <section className="image">
-          <div className="image-container">
-            <h2 className="msg"> Ai Image Generator </h2>
-           <img src="" alt="" id="image"  onClick={(e) => downloadImage(imageUrl)} />  
-          </div>
-        </section>
-      </main>
-      <div className="spinner"></div>
-    </div>
-  );
-};
-
-export default Home;
+          </section>
+  
+          <section className="image">
+            <div className="container">
+              <div className="image-container">
+                <h2 className="msg">Ai Image Generator</h2>
+                <img
+                  src=""
+                  alt=""
+                  id="image"
+                  className="img-fluid"
+                  onClick={(e) => downloadImage(imageUrl)}
+                />
+              </div>
+            </div>
+          </section>
+        </main>
+  
+        <div className="spinner"></div>
+      </div>
+    );
+  };
+  
+  export default Home;
