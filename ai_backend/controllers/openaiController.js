@@ -65,7 +65,7 @@ const generateAiImage = async (req, res) => {
    try {
     const response = await openai.createImageVariation(
       fs.createReadStream(filepath),
-      4,
+      1,
       "256x256"
     );
     res.send(response.data.data)
