@@ -12,7 +12,6 @@ dotenv.config();
 
 app.use(require('./routes/openaiRoutes'));
 
-const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/ai_frontend/build")));
 app.get("*", (req, res) =>
   res.sendFile(path.join(__dirname, "/ai_frontend/build/index.html"))
