@@ -4,7 +4,7 @@
   "description": "\"ai image generator app \"",
   "main": "index.js",
    "scripts": {
-    "build": "cd ai_backend && npm install  && cd ../ai_frontend && npm install && npm run build",
+    "build": "cd ai_backend && npm install  && cd ai_frontend && npm install && npm run build",
     "start": "node ai_backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
