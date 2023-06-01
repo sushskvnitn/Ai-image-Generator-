@@ -1,65 +1,63 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState } from "react";
+import Modal from "./Modal";
 const Variation = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+  const [images, setImages] = useState("");
 
   const handleImageUpload = async () => {
+    setImages(null);
+    if(selectedImage===null){
+      alert("Please select an image to go next!!");
+      return;
+    }
     try {
       const response = await fetch("/generateAiImage", {
-        method: "POST",
-        body: selectedImage,
+        method: "POST"
       });
       const data = await response.json();
-      const { imageUrl } = data;
-
-      setImageUrl(imageUrl);
+     console.log(data);
+     setImages(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const handleImageSelect = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setSelectedImage(event.target.files[0]);
+  const handleImageSelect = async(event) => {
+    const formData = new FormData();
+    formData.append('file', event.target.files[0]);
+    setSelectedImage(event.target.files[0]);
+    event.target.value = null;
+    try {
+      const options={
+        method: "POST",
+        body: formData,
+      }
+      const response = await fetch("/upload",options)
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
     }
+
   };
-  useEffect(() => {
-    console.log(selectedImage);
-  }, [selectedImage]);
 
   return (
-    <div className="">
-      <div className="">
-        <div class="input-group">
-          <div class="custom-file">
-            <input
-              type="file"
-              class="custom-file-input"
-              onChange={handleImageSelect}
-              id="inputGroupFile04"
-            />
-            <label class="custom-file-label" for="inputGroupFile04">
-              Choose file
-            </label>
-          </div>
-          <div class="input-group-append">
-            <button
-              class="btn btn-primary"
-              onClick={handleImageUpload}
-              type="button"
-            >
-              Button
-            </button>
-          </div>
-        </div>
-        {imageUrl && (
-          <div className="mt-4">
-            <img src={imageUrl} alt="Genmage" className="img-fluid" />
-          </div>
-        )}
-      </div>
-    </div>
+    <div className="container">
+      <span className="text-center">
+          <label htmlFor="files">upload an image</label>
+          <input id="files" data-bs-toggle="modal" data-bs-target="#exampleModal" onChange={handleImageSelect} className="form-input" accept="image/*" type="file" hidden/>
+
+      </span>
+      
+      <Modal 
+      selectedImage={selectedImage} 
+      setSelectedImage={setSelectedImage}
+      handleImageUpload={handleImageUpload}
+      />
+      {images && images.map((imgurl)=>{
+        return(<img src={imgurl.url} alt="dkfmg"/>)
+      })}
+       </div>
   );
 };
 

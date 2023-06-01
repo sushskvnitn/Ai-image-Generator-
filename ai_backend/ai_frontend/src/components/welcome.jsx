@@ -13,7 +13,7 @@ const welcome = () => {
     loop: true,
   }}
 /></h1>
-        <Link to="/home"> <h1>text to Image</h1> </Link>
+        <Link to="/home"> <h1>Text to Image</h1> </Link>
         <Link to ="/Variation"><h1>Image to Ai Image</h1></Link>
       </div>
 
