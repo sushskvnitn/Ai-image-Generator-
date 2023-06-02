@@ -26,6 +26,9 @@ const Navbar = () => {
              <li className="nav-item">
               <Link className="nav-link text-light" to="/speechtoimg">Speech to Image</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/imagetotext"> Image to Text</Link>
+            </li>
           </ul>
           <form className="d-flex">
           <ul className="navbar-nav ml-auto">

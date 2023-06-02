@@ -16,6 +16,7 @@ const welcome = () => {
         <Link to="/home"> <h4>Text to Image</h4> </Link>
         <Link to ="/Variation"><h4>Image to Ai Image</h4></Link>
         <Link to ="/speechtoimg"><h4>Speech to Ai Image</h4></Link>
+        <Link to ="/imagetotext"><h4> Image To Text </h4></Link>
       </div>
 
       <div class="area">

@@ -59,20 +59,14 @@ const SpeechtoImg = () => {
       >
         Start 🎙️
       </button>
-      <button
-        className="speech-button"
-        onClick={SpeechRecognition.stopListening}
-      >
-        Stop 🛑
-      </button>
+
       <button className="speech-button" onClick={resetTranscript}>
         Reset 🔄
       </button>
       <p className="transcript">{transcript}</p>
       <div className="msg fs-3 text-center"></div>
       {transcript && !resulturl && (
-        <div className="text-center">
-          Generating Image...
+        <div className="text-center d-flex justify-content-center ">
           <div class="opposites">
             <div class="opposites bl"></div>
             <div class="opposites tr"></div>

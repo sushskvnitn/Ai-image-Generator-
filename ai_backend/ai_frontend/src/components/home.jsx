@@ -136,8 +136,13 @@ const Home = () => {
       </main>
 
       {showSpinner && (
-        <div className="spinner">
-          <div className="spinner-inner"></div>
+        <div className="text-center d-flex justify-content-center ">
+          <div class="opposites">
+            <div class="opposites bl"></div>
+            <div class="opposites tr"></div>
+            <div class="opposites br"></div>
+            <div class="opposites tl"></div>
+          </div>
         </div>
       )}
     </div>
