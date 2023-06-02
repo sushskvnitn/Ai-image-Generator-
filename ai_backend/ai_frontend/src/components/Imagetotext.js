@@ -26,10 +26,9 @@ function App() {
     })
     .then(result => {
       // Get Confidence score
-      console.log(result.data.text);
-      let confidence = result.confidence
+      console.log(result);
       setshowloading(false)
-      let text = result.data.text
+      let text = result.data.lines
       setText(text);
     })
   }
@@ -43,7 +42,9 @@ function App() {
         }
           <h3>Extracted text</h3>
         <div className="text-box">
-          <p> {text} </p>
+          <div> {text && text.map((e)=>{
+            return <p>{e.text}</p>
+          })} </div>
           {text && <CopyToClipboard text={text}>
   <button className="btn btn-small btn-secondary">Copy </button>
 </CopyToClipboard>}
