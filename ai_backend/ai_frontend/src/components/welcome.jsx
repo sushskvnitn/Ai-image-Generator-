@@ -13,8 +13,9 @@ const welcome = () => {
     loop: true,
   }}
 /></h1>
-        <Link to="/home"> <h1>Text to Image</h1> </Link>
-        <Link to ="/Variation"><h1>Image to Ai Image</h1></Link>
+        <Link to="/home"> <h4>Text to Image</h4> </Link>
+        <Link to ="/Variation"><h4>Image to Ai Image</h4></Link>
+        <Link to ="/speechtoimg"><h4>Speech to Ai Image</h4></Link>
       </div>
 
       <div class="area">

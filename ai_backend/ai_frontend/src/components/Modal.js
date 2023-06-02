@@ -28,7 +28,7 @@ const Modal = ({selectedImage,setSelectedImage,handleImageUpload}) => {
       </div>
 
       <div class="modal-footer">
-      <p>{error || "image should be 256 x 256 px image" }</p>
+      <p className="text-secondary" >{error || "image should be 256 x 256 px image" }</p>
       { !error && <button type="button" class="btn btn-secondary" onClick={checkImage}>Generate</button>
      } 
      </div>

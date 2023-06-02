@@ -1,0 +1,27 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .upload-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .form-input {
+    display: none;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  

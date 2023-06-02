@@ -17,6 +17,11 @@ body{
     
 }
 
+.context h4{
+    text-align: center;
+    color: #817f9e;
+    font-size: 30px;
+}
 .context h1{
     text-align: center;
     color: #fff;
